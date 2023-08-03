@@ -3,12 +3,23 @@ import {Component} from 'react'
 import './index.css'
 
 class EvenOddApp extends Component {
+  state = {count: 0}
+
+  onIncrement = () => {
+    this.setState({count: Math.floor(Math.random() * 100)})
+  }
+
   render() {
+    const {count} = this.state
     return (
       <div className="container">
-        <h1 className="title">Count 0</h1>
-        <p className="count-type">Count is Even</p>
-        <button type="button" className="butn">
+        <h1 className="title">Count {count}</h1>
+        {count % 2 === 0 ? (
+          <p className="count-type">Count is Even</p>
+        ) : (
+          <p className="count-type">Count is Odd</p>
+        )}
+        <button type="button" className="butn" onClick={this.onIncrement}>
           Increment
         </button>
         <p className="random-num">
